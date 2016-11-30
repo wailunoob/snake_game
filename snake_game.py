@@ -7,6 +7,7 @@ from pygame.sprite import OrderedUpdates
 from food import Food
 import random
 from pygame.sprite import GroupSingle
+from play_button import Play_button
 
 def run_game():
 	pygame.init()
@@ -19,11 +20,13 @@ def run_game():
 	food = GroupSingle(Food(snake, screen, x, y))
 	tails = OrderedUpdates()
 	gf.initialise_snake(snake, screen, my_tail, tails, settings)
-
+	button = Play_button(screen, settings)
+	
 	if settings.game_status == "active":
 		while True:
 			gf.check_events(snake, food, screen, my_tail, tails, settings)
 			screen.fill(settings.bg_color)
+			button.draw_me()
 			snake.update()	
 			tails.update()
 			snake.draw_me()
