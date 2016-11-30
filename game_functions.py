@@ -42,7 +42,6 @@ def check_keydown_events(event, snake, button, settings):
 			snake.moving_right = True
 	if event.type == pygame.MOUSEBUTTONDOWN:
 		x, y = pygame.mouse.get_pos()
-		print(x, y, button.rect.collidepoint(x, y), settings.game_active) #!!!
 		if button.rect.collidepoint(x, y) == True:
 			settings.game_active = True
 
