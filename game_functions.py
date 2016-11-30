@@ -20,18 +20,28 @@ def check_events(snake, food, screen, my_tail, tails, settings, button, gf):
 	width, height = settings.resolution
 	if snake.rect.x > width - 30 or snake.rect.x < 0:
 		settings.game_active = False
-		tails.empty()
 		my_tail = []
+		tails.empty
 		snake.rect.centerx = snake.screen_rect.centerx - 15
 		snake.rect.centery = snake.screen_rect.centery - 15
 		gf.initialise_snake(snake, screen, my_tail, tails, settings)
 	if snake.rect.y > height - 30 or snake.rect.y < 0:
 		settings.game_active = False
-		tails.empty()
 		my_tail = []
+		tails.empty
 		snake.rect.centerx = snake.screen_rect.centerx - 15
 		snake.rect.centery = snake.screen_rect.centery - 15
 		gf.initialise_snake(snake, screen, my_tail, tails, settings)
+	for tail in my_tail:
+		if snake.rect.center == tail.rect.center and \
+			pygame.time.get_ticks() > 5000:
+			settings.game_active = False
+			my_tail = []
+			tails.empty
+			snake.rect.centerx = snake.screen_rect.centerx - 15
+			snake.rect.centery = snake.screen_rect.centery - 15
+			gf.initialise_snake(snake, screen, my_tail, tails, settings)
+
 
 def check_keydown_events(event, snake, button, settings):
 	if event.type == pygame.KEYDOWN:
