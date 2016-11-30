@@ -20,7 +20,7 @@ def run_game():
 	food = GroupSingle(Food(snake, screen, x, y))
 	tails = OrderedUpdates()
 	gf.initialise_snake(snake, screen, my_tail, tails, settings)
-	button = Play_button(screen, settings)
+	button = Play_button(screen, settings, "Play")
 	
 	if settings.game_status == "active":
 		while True:
