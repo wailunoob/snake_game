@@ -17,6 +17,15 @@ def check_events(snake, food, screen, my_tail, tails, settings, button):
 		my_tail.append(tail_sprite)
 		for body in my_tail:
 			tails.add(body)
+	width, height = settings.resolution
+	if snake.rect.x > width - 30 or snake.rect.x < 0:
+		settings.game_active = False
+		snake.rect.centerx = snake.screen_rect.centerx - 15
+		snake.rect.centery = snake.screen_rect.centery - 15
+	if snake.rect.y > height - 30 or snake.rect.y < 0:
+		settings.game_active = False
+		snake.rect.centerx = snake.screen_rect.centerx - 15
+		snake.rect.centery = snake.screen_rect.centery - 15
 
 def check_keydown_events(event, snake, button, settings):
 	if event.type == pygame.KEYDOWN:
