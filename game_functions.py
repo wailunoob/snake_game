@@ -13,7 +13,7 @@ def check_events(snake, food, screen, my_tail, tails, settings, button, gf):
 		x, y = generate_randoms()
 		food.add(Food(snake, screen, x, y))
 		settings.snake_length += 1
-		tail_sprite = Tail(snake, screen, settings.snake_length - 2, my_tail)
+		tail_sprite = Tail(snake, screen, settings.snake_length - 1, my_tail)
 		my_tail.append(tail_sprite)
 		for body in my_tail:
 			tails.add(body)
