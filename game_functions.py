@@ -4,11 +4,11 @@ import random
 from food import Food
 from pygame.sprite import OrderedUpdates
 
-def check_events(snake, food, screen, my_tail, tails, settings):
+def check_events(snake, food, screen, my_tail, tails, settings, button):
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 				sys.exit()
-		check_keydown_events(event, snake)
+		check_keydown_events(event, snake, button, settings)
 	if pygame.sprite.collide_rect(snake, food.sprite):
 		x, y = generate_randoms()
 		food.add(Food(snake, screen, x, y))
@@ -18,7 +18,7 @@ def check_events(snake, food, screen, my_tail, tails, settings):
 		for body in my_tail:
 			tails.add(body)
 
-def check_keydown_events(event, snake):
+def check_keydown_events(event, snake, button, settings):
 	if event.type == pygame.KEYDOWN:
 		if event.key == pygame.K_DOWN and snake.moving_up == False:
 			snake.moving_down = True
@@ -40,6 +40,11 @@ def check_keydown_events(event, snake):
 			snake.moving_up = False
 			snake.moving_left = False
 			snake.moving_right = True
+	if event.type == pygame.MOUSEBUTTONDOWN:
+		x, y = pygame.mouse.get_pos()
+		print(x, y, button.rect.collidepoint(x, y), settings.game_active) #!!!
+		if button.rect.collidepoint(x, y) == True:
+			settings.game_active = True
 
 
 def initialise_snake(snake, screen, my_tail, tails, settings):
