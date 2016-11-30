@@ -22,16 +22,16 @@ def run_game():
 	gf.initialise_snake(snake, screen, my_tail, tails, settings)
 	button = Play_button(screen, settings, "Play")
 	
-	if settings.game_status == "active":
-		while True:
-			gf.check_events(snake, food, screen, my_tail, tails, settings)
-			screen.fill(settings.bg_color)
-			button.draw_me()
+	while True:
+		gf.check_events(snake, food, screen, my_tail, tails, settings)
+		screen.fill(settings.bg_color)
+		button.draw_me()
+		if settings.game_active == True:
 			snake.update()	
 			tails.update()
 			snake.draw_me()
 			food.update()
 			pygame.time.wait(100)
-			pygame.display.flip()
+		pygame.display.flip()
 
 run_game()

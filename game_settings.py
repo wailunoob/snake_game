@@ -4,4 +4,4 @@ class Settings():
 		self.resolution = (1200, 900)
 		self.snake_color = (23, 123, 32)
 		self.snake_length = 5
-		self.game_status = "active"
+		self.game_active = False
