@@ -18,14 +18,14 @@ def check_events(snake, food, screen, my_tail, tails, settings, button, gf):
 		for body in my_tail:
 			tails.add(body)
 	width, height = settings.resolution
-	if snake.rect.x > width - 30 or snake.rect.x < 0:
+	if snake.rect.centerx > width or snake.rect.centerx < 0:
 		settings.game_active = False
 		my_tail = []
 		tails.empty
 		snake.rect.centerx = snake.screen_rect.centerx - 15
 		snake.rect.centery = snake.screen_rect.centery - 15
 		gf.initialise_snake(snake, screen, my_tail, tails, settings)
-	if snake.rect.y > height - 30 or snake.rect.y < 0:
+	if snake.rect.centery > height or snake.rect.centery < 0:
 		settings.game_active = False
 		my_tail = []
 		tails.empty
