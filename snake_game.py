@@ -20,14 +20,15 @@ def run_game():
 	tails = OrderedUpdates()
 	gf.initialise_snake(snake, screen, my_tail, tails, settings)
 
-	while True:
-		gf.check_events(snake, food, screen, my_tail, tails, settings)
-		screen.fill(settings.bg_color)
-		snake.update()	
-		tails.update()
-		snake.draw_me()
-		food.update()
-		pygame.time.wait(100)
-		pygame.display.flip()
+	if settings.game_status == "active":
+		while True:
+			gf.check_events(snake, food, screen, my_tail, tails, settings)
+			screen.fill(settings.bg_color)
+			snake.update()	
+			tails.update()
+			snake.draw_me()
+			food.update()
+			pygame.time.wait(100)
+			pygame.display.flip()
 
 run_game()
