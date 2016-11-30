@@ -25,7 +25,8 @@ def run_game():
 	while True:
 		gf.check_events(snake, food, screen, my_tail, tails, settings, button)
 		screen.fill(settings.bg_color)
-		button.draw_me()
+		if settings.game_active == False:
+			button.draw_me()
 		if settings.game_active == True:
 			snake.update()	
 			tails.update()

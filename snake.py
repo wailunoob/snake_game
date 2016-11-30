@@ -10,7 +10,7 @@ class Snake(pygame.sprite.Sprite):
 		self.rect.centery = self.screen_rect.centery - 15
 		self.settings = settings
 		self.moving_left = False
-		self.moving_right = False
+		self.moving_right = True
 		self.moving_up = False
 		self.moving_down = False
 		self.old_position = pygame.Rect(self.rect.x, self.rect.y, 30, 30)
