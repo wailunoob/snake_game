@@ -9,6 +9,7 @@ import random
 from pygame.sprite import GroupSingle
 from play_button import Play_button
 from end_game_screen import EndGameScreen
+from score import Score
 
 def run_game():
 	pygame.init()
@@ -23,10 +24,12 @@ def run_game():
 	gf.initialise_snake(snake, screen, my_tail, tails, settings)
 	button = Play_button(screen, settings, "Play")
 	end_game_screen = EndGameScreen(screen, settings, "Game Over")
+	score = Score(screen, settings)
 	
 	while True:
 		screen.fill(settings.bg_color)
-		gf.check_events(snake, food, screen, my_tail, tails, settings, button, gf, end_game_screen)
+		score.draw_me()
+		gf.check_events(snake, food, screen, my_tail, tails, settings, button, gf, end_game_screen, score)
 		if settings.game_active == False:
 			if gf.lose_condition_met(snake, settings, my_tail) == False:
 				button.draw_me()

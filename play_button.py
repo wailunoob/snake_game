@@ -9,7 +9,7 @@ class Play_button():
 		self.screen_rect = self.screen.get_rect()
 		self.settings = settings
 		self.rect.center = self.screen_rect.center
-		self.font = pygame.font.SysFont(None, 48, bold = True)
+		self.font = pygame.font.SysFont(None, 48, bold = False)
 		self.prep_msg(msg)
 	
 	def prep_msg(self, msg):
