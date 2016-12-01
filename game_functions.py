@@ -17,15 +17,9 @@ def check_events(snake, food, screen, my_tail, tails, settings, button, gf, end_
 		my_tail.append(tail_sprite)
 		for body in my_tail:
 			tails.add(body)
-	width, height = settings.resolution
-	if snake.rect.centerx > width or snake.rect.centerx < 0:
+	if lose_condition_met(snake, settings, my_tail):
+		settings.game_active = False
 		end_game_screen.draw_me()
-	if snake.rect.centery > height or snake.rect.centery < 0:
-		end_game_screen.draw_me()
-	for tail in my_tail:
-		if snake.rect.center == tail.rect.center and \
-			pygame.time.get_ticks() > 5000:
-			end_game_screen.draw_me()
 
 
 def check_keydown_events(event, snake, button, settings):
@@ -67,3 +61,16 @@ def generate_randoms():
 	x = random.randrange(0, 1200, 30)
 	y = random.randrange(0, 900, 30)
 	return x, y
+
+def lose_condition_met(snake, settings, my_tail):
+	width, height = settings.resolution
+	if snake.rect.centerx > width or snake.rect.centerx < 0:
+		return True
+	elif snake.rect.centery > height or snake.rect.centery < 0:
+		return True
+	for tail in my_tail:
+		if snake.rect.center == tail.rect.center and \
+			pygame.time.get_ticks() > 5000:
+			return True
+	else:
+		return False
