@@ -4,7 +4,7 @@ import random
 from food import Food
 from pygame.sprite import OrderedUpdates
 
-def check_events(snake, food, screen, my_tail, tails, settings, button, gf):
+def check_events(snake, food, screen, my_tail, tails, settings, button, gf, end_game_screen):
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 				sys.exit()
@@ -19,28 +19,13 @@ def check_events(snake, food, screen, my_tail, tails, settings, button, gf):
 			tails.add(body)
 	width, height = settings.resolution
 	if snake.rect.centerx > width or snake.rect.centerx < 0:
-		settings.game_active = False
-		my_tail = []
-		tails.empty
-		snake.rect.centerx = snake.screen_rect.centerx - 15
-		snake.rect.centery = snake.screen_rect.centery - 15
-		gf.initialise_snake(snake, screen, my_tail, tails, settings)
+		end_game_screen.draw_me()
 	if snake.rect.centery > height or snake.rect.centery < 0:
-		settings.game_active = False
-		my_tail = []
-		tails.empty
-		snake.rect.centerx = snake.screen_rect.centerx - 15
-		snake.rect.centery = snake.screen_rect.centery - 15
-		gf.initialise_snake(snake, screen, my_tail, tails, settings)
+		end_game_screen.draw_me()
 	for tail in my_tail:
 		if snake.rect.center == tail.rect.center and \
 			pygame.time.get_ticks() > 5000:
-			settings.game_active = False
-			my_tail = []
-			tails.empty
-			snake.rect.centerx = snake.screen_rect.centerx - 15
-			snake.rect.centery = snake.screen_rect.centery - 15
-			gf.initialise_snake(snake, screen, my_tail, tails, settings)
+			end_game_screen.draw_me()
 
 
 def check_keydown_events(event, snake, button, settings):
