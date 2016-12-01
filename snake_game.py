@@ -33,8 +33,6 @@ def run_game():
 		if settings.game_active == False:
 			if gf.lose_condition_met(snake, settings, my_tail) == False:
 				button.draw_me()
-			else:
-				pass
 		if settings.game_active == True:
 			snake.update()	
 			tails.update()
