@@ -25,6 +25,7 @@ def run_game():
 	button = Play_button(screen, settings, "Play")
 	end_game_screen = EndGameScreen(screen, settings, "Game Over")
 	score = Score(screen, settings)
+	clock = pygame.time.Clock()
 	
 	while True:
 		screen.fill(settings.bg_color)
@@ -38,7 +39,7 @@ def run_game():
 			tails.update()
 			snake.draw_me()
 			food.update()
-			pygame.time.wait(100)
+			clock.tick(10)
 		pygame.display.flip()
 
 run_game()
