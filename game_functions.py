@@ -18,7 +18,7 @@ def check_events(snake, food, screen, my_tail, tails, settings, button, gf, end_
 		my_tail.append(tail_sprite)
 		for body in my_tail:
 			tails.add(body)
-	if lose_condition_met(snake, settings, my_tail):
+	if lose_condition_met(snake, settings, tails):
 		settings.game_active = False
 		end_game_screen.draw_me()
 
@@ -63,15 +63,14 @@ def generate_randoms():
 	y = random.randrange(0, 900, 30)
 	return x, y
 
-def lose_condition_met(snake, settings, my_tail):
+def lose_condition_met(snake, settings, tails):
 	width, height = settings.resolution
 	if snake.rect.centerx > width or snake.rect.centerx < 0:
 		return True
 	elif snake.rect.centery > height or snake.rect.centery < 0:
 		return True
-	for tail in my_tail:
-		if snake.rect.center == tail.rect.center and \
-			pygame.time.get_ticks() > 5000:
+	elif pygame.sprite.spritecollide(snake, tails, False, pygame.sprite.collide_rect_ratio(0.5)) and pygame.time.get_ticks() > 5000:
+			print(pygame.sprite.spritecollide(snake, tails, False, pygame.sprite.collide_rect_ratio(0.5)))
 			return True
 	else:
 		return False

@@ -32,7 +32,7 @@ def run_game():
 		score.draw_me()
 		gf.check_events(snake, food, screen, my_tail, tails, settings, button, gf, end_game_screen, score)
 		if settings.game_active == False:
-			if gf.lose_condition_met(snake, settings, my_tail) == False:
+			if gf.lose_condition_met(snake, settings, tails) == False:
 				button.draw_me()
 		if settings.game_active == True:
 			snake.update()	
