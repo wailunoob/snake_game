@@ -6,5 +6,5 @@ class GTime():
 		self.clock = clock
 
 	def update(self):
-		if self.clock.get_time() < 200:
-			self.time += self.clock.get_time()
+		if self.clock.get_time() < 110:
+			self.time += 100

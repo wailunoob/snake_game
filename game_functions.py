@@ -4,7 +4,7 @@ import random
 from food import Food
 from pygame.sprite import OrderedUpdates
 
-def check_events(snake, food, screen, my_tail, tails, settings, button, gf, end_game_screen, score):
+def check_events(snake, food, screen, my_tail, tails, settings, button, gf, end_game_screen, score, gametime):
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 				sys.exit()
@@ -18,7 +18,7 @@ def check_events(snake, food, screen, my_tail, tails, settings, button, gf, end_
 		my_tail.append(tail_sprite)
 		for body in my_tail:
 			tails.add(body)
-	if lose_condition_met(snake, settings, tails):
+	if lose_condition_met(snake, settings, tails, gametime):
 		settings.game_active = False
 		end_game_screen.draw_me()
 
@@ -63,13 +63,13 @@ def generate_randoms():
 	y = random.randrange(0, 900, 30)
 	return x, y
 
-def lose_condition_met(snake, settings, tails):
+def lose_condition_met(snake, settings, tails, gametime):
 	width, height = settings.resolution
 	if snake.rect.centerx > width or snake.rect.centerx < 0:
 		return True
 	elif snake.rect.centery > height or snake.rect.centery < 0:
 		return True
-	elif pygame.sprite.spritecollide(snake, tails, False, pygame.sprite.collide_rect_ratio(0.5)) and pygame.time.get_ticks() > 5000:
+	elif pygame.sprite.spritecollide(snake, tails, False, pygame.sprite.collide_rect_ratio(0.5)) and gametime.time != 0:
 			print(pygame.sprite.spritecollide(snake, tails, False, pygame.sprite.collide_rect_ratio(0.5)))
 			return True
 	else:
