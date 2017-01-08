@@ -25,26 +25,29 @@ def check_events(snake, food, screen, my_tail, tails, settings, button, gf, end_
 
 def check_keydown_events(event, snake, button, settings, gametime):
 	if event.type == pygame.KEYDOWN:
-		print(event)
-		if event.key == pygame.K_DOWN and snake.moving_up == False and gametime.keypressed == False:# and keypressed == False:
+		if event.key == pygame.K_DOWN and snake.moving_up == False and gametime.keypressed == False:
+			print("key registered!")
 			gametime.keypressed = True
 			snake.moving_down = True
 			snake.moving_up = False
 			snake.moving_left = False
 			snake.moving_right = False
-		elif event.key == pygame.K_UP and snake.moving_down == False and gametime.keypressed == False:# and keypressed == False:
+		elif event.key == pygame.K_UP and snake.moving_down == False and gametime.keypressed == False:
+			print("key registered!")
 			gametime.keypressed = True
 			snake.moving_down = False
 			snake.moving_up = True
 			snake.moving_left = False
 			snake.moving_right = False
-		elif event.key == pygame.K_LEFT and snake.moving_right == False and gametime.keypressed == False:# and keypressed == False:
+		elif event.key == pygame.K_LEFT and snake.moving_right == False and gametime.keypressed == False:
+			print("key registered!")
 			gametime.keypressed = True
 			snake.moving_down = False
 			snake.moving_up = False
 			snake.moving_left = True
 			snake.moving_right = False
-		elif event.key == pygame.K_RIGHT and snake.moving_left == False and gametime.keypressed == False:# and keypressed == False:
+		elif event.key == pygame.K_RIGHT and snake.moving_left == False and gametime.keypressed == False:
+			print("key registered!")
 			gametime.keypressed = True
 			snake.moving_down = False
 			snake.moving_up = False

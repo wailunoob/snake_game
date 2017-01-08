@@ -9,4 +9,4 @@ class GTime():
 	def update(self):
 		if self.clock.get_time() < 110:
 			self.time += 100
-		return True
+		self.keypressed = False

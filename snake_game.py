@@ -43,8 +43,6 @@ def run_game():
 			food.update()
 			clock.tick(10)
 			gametime.update()
-			if gametime.update():
-				gametime.keypressed = False
 			print(gametime.time)
 		pygame.display.flip()
 
