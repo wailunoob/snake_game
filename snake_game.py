@@ -10,6 +10,7 @@ from pygame.sprite import GroupSingle
 from play_button import Play_button
 from end_game_screen import EndGameScreen
 from score import Score
+from game_time import GTime
 
 def run_game():
 	pygame.init()
@@ -26,6 +27,7 @@ def run_game():
 	end_game_screen = EndGameScreen(screen, settings, "Game Over")
 	score = Score(screen, settings)
 	clock = pygame.time.Clock()
+	gametime = GTime(clock)
 	
 	while True:
 		screen.fill(settings.bg_color)
@@ -40,6 +42,8 @@ def run_game():
 			snake.draw_me()
 			food.update()
 			clock.tick(10)
+			gametime.update()
+			print(gametime.time)
 		pygame.display.flip()
 
 run_game()
