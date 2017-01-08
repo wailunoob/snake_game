@@ -8,7 +8,7 @@ def check_events(snake, food, screen, my_tail, tails, settings, button, gf, end_
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 				sys.exit()
-		check_keydown_events(event, snake, button, settings)
+		check_keydown_events(event, snake, button, settings, gametime)
 	if pygame.sprite.collide_rect(snake, food.sprite):
 		x, y = generate_randoms()
 		food.add(Food(snake, screen, x, y))
@@ -23,24 +23,29 @@ def check_events(snake, food, screen, my_tail, tails, settings, button, gf, end_
 		end_game_screen.draw_me()
 
 
-def check_keydown_events(event, snake, button, settings):
+def check_keydown_events(event, snake, button, settings, gametime):
 	if event.type == pygame.KEYDOWN:
-		if event.key == pygame.K_DOWN and snake.moving_up == False:
+		print(event)
+		if event.key == pygame.K_DOWN and snake.moving_up == False and gametime.keypressed == False:# and keypressed == False:
+			gametime.keypressed = True
 			snake.moving_down = True
 			snake.moving_up = False
 			snake.moving_left = False
 			snake.moving_right = False
-		if event.key == pygame.K_UP and snake.moving_down == False:
+		elif event.key == pygame.K_UP and snake.moving_down == False and gametime.keypressed == False:# and keypressed == False:
+			gametime.keypressed = True
 			snake.moving_down = False
 			snake.moving_up = True
 			snake.moving_left = False
 			snake.moving_right = False
-		if event.key == pygame.K_LEFT and snake.moving_right == False:
+		elif event.key == pygame.K_LEFT and snake.moving_right == False and gametime.keypressed == False:# and keypressed == False:
+			gametime.keypressed = True
 			snake.moving_down = False
 			snake.moving_up = False
 			snake.moving_left = True
 			snake.moving_right = False
-		if event.key == pygame.K_RIGHT and snake.moving_left == False:
+		elif event.key == pygame.K_RIGHT and snake.moving_left == False and gametime.keypressed == False:# and keypressed == False:
+			gametime.keypressed = True
 			snake.moving_down = False
 			snake.moving_up = False
 			snake.moving_left = False
